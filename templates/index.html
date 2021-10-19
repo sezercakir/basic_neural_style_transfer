@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Material Design for Bootstrap</title>
+    <!-- MDB icon -->
+    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
+    <!-- Google Fonts Roboto -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+    />
+    <!-- MDB -->
+    
+    <link rel="stylesheet" href="https://github.com/sezercakir/basic_neural_style_transfer/blob/master/mdb.min.css">
+  </head>
+  <body>
+    <!-- Start your project here-->
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  <title>Document</title>
+</head>
+<body>
+  <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom: 20px;">
+  <!-- Container wrapper -->
+  <div class="container">
+
+    <a
+      class="btn btn-dark px-3"
+      href="https://www.linkedin.com/in/sezer-%C3%A7ak%C4%B1r-b366b6174/"
+      role="button"
+      ><i class="fab fa-linkedin"></i
+    ></a>
+
+
+<!-- Collapsible wrapper -->
+<div class="collapse navbar-collapse" id="navbarButtonsExample">
+  <!-- Left links -->
+  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <li class="nav-item" style="margin-left: 345px;margin-right: 360px;">
+      <a class="nav-link" >Neural Style Transfer Example Projct</a>
+    </li>
+  </ul>
+  <!-- Left links -->
+
+  <div class="d-flex align-items-center" >
+    <a
+      class="btn btn-dark px-3"
+      href="https://github.com/sezercakir"
+      role="button"
+      ><i class="fab fa-github"></i
+    ></a>
+  </div>
+</div>
+<!-- Collapsible wrapper -->
+</div>
+<!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
+  <form method="POST" action="" enctype="multipart/form-data" class="text-center" style="margin: auto;width: 50%;border: none;">
+    <label for="formFileSm" class="form-label" >Sytle Image </label>
+    <input class="form-control form-control-sm"  id="formFileSm" name="file" type="file" />
+    <label for="formFileLg" class="form-label" >Content Image</label>
+    <input class="form-control form-control-lg" id="formFileLg" name="file2" type="file" />
+    <input class="btn btn-primary" type="submit" value="Submit" style="margin-top: 20px;">
+
+  </form>
+  <hr>
+  {% if files %}
+  <img id="picture" src="data:image/jpeg;base64,{{ files }}">
+  {% endif %}
+  <br>
+  {{ shape }}
+</body>
+</html>
+    

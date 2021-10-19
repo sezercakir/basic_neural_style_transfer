@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Material Design for Bootstrap</title>
+    <title>Neural Style Transfer </title>
     <!-- MDB icon -->
-    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="https://github.com/sezercakir/basic_neural_style_transfer/blob/master/images/image.png?raw=true" type="image/png" />
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
     <!-- Google Fonts Roboto -->
@@ -77,9 +77,12 @@
 
   </form>
   <hr>
-  {% if files %}
-  <img id="picture" src="data:image/jpeg;base64,{{ files }}">
-  {% endif %}
+  <div style="align-items: center;width: auto;">
+    {% if files %}
+    <img style="width: 170px;" id="picture" src="data:image/jpeg;base64,{{ files }}">
+    {% endif %}
+  </div>
+  
   <br>
   {{ shape }}
 </body>

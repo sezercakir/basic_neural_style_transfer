@@ -49,7 +49,7 @@ def index():
 
 @app.route('/', methods=['POST'])
 def upload_files():
-    #try:
+    try:
         # get uploaded files
         uploaded_file = request.files['file'],request.files['file2']
 
@@ -68,8 +68,8 @@ def upload_files():
         files.append(encoded_img_data.decode('utf-8'))
 
         return render_template('index.html',  files=files[0])
-    #'''except:
-     #   return render_template('error.html')'''
+    except:
+        return render_template('error.html')
     
 
 

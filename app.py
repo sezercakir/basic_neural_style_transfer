@@ -16,7 +16,7 @@ app = Flask(__name__)
 
 # Flask file configurations
 
-app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.png', '.gif']
+app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.png', '.gif','.jpeg']
 
 
 def validate_image(stream):
@@ -37,6 +37,7 @@ def image_preprocessing(uploaded_file):
     content_img = pil_to_tensor
     style_img = pil_to_tensor_Style
     input_img = content_img.clone()
+    print(content_img.size(),style_img.size())
     return input_img, content_img, style_img
 
 # to keep names of uploaded files
@@ -48,22 +49,9 @@ def index():
 
 @app.route('/', methods=['POST'])
 def upload_files():
-    try:
+    #try:
         # get uploaded files
         uploaded_file = request.files['file'],request.files['file2']
-
-        # rename securely
-        filename = secure_filename(uploaded_file[0].filename),secure_filename(uploaded_file[1].filename)
-
-        if filename[0] != '' or filename[1]!='':
-            file_ext = os.path.splitext(filename[0])[1],os.path.splitext(filename[1])[1]
-
-            if file_ext[0] not in app.config['UPLOAD_EXTENSIONS'] or \
-                    file_ext[1] not in app.config['UPLOAD_EXTENSIONS'] or \
-                    file_ext[0] != validate_image(uploaded_file[0].stream) or \
-                    file_ext[1] != validate_image(uploaded_file[1].stream):
-                abort(400)
-
 
         #preprocessing images and runnig model
         input_img, content_img, style_img = image_preprocessing(uploaded_file)
@@ -80,8 +68,8 @@ def upload_files():
         files.append(encoded_img_data.decode('utf-8'))
 
         return render_template('index.html',  files=files[0])
-    except:
-        return render_template('error.html')
+    #'''except:
+     #   return render_template('error.html')'''
     
 
 

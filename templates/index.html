@@ -35,7 +35,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom: 20px;">
   <!-- Container wrapper -->
   <div class="container">
-
     <a
       class="btn btn-dark px-3"
       href="https://www.linkedin.com/in/sezer-%C3%A7ak%C4%B1r-b366b6174/"
@@ -49,7 +48,7 @@
   <!-- Left links -->
   <ul class="navbar-nav me-auto mb-2 mb-lg-0">
     <li class="nav-item" style="margin-left: 345px;margin-right: 360px;">
-      <a class="nav-link" >Neural Style Transfer Example Projct</a>
+      <p class="nav-link" >Neural Style Transfer Example Projct</p>
     </li>
   </ul>
   <!-- Left links -->
@@ -68,8 +67,12 @@
 <!-- Container wrapper -->
 </nav>
 <!-- Navbar -->
+<div style="text-align: center;margin-bottom: 20px; font-size: x-small;">
+  <p>Allowed images formats are .jpeg and .jpg</p>
+</div>
+  
   <form method="POST" action="" enctype="multipart/form-data" class="text-center" style="margin: auto;width: 50%;border: none;">
-    <label for="formFileSm" class="form-label" >Sytle Image </label>
+    <label for="formFileSm" class="form-label" >Sytle Image</label>
     <input class="form-control form-control-sm"  id="formFileSm" name="file" type="file" />
     <label for="formFileLg" class="form-label" >Content Image</label>
     <input class="form-control form-control-lg" id="formFileLg" name="file2" type="file" />
@@ -77,9 +80,9 @@
 
   </form>
   <hr>
-  <div style="align-items: center;width: auto;">
+  <div style="align-items: center;width: 150px;height: 150px;">
     {% if files %}
-    <img style="width: 170px;" id="picture" src="data:image/jpeg;base64,{{ files }}">
+    <img  id="picture" src="data:image/jpeg;base64,{{ files }}">
     {% endif %}
   </div>
   

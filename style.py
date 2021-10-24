@@ -5,9 +5,10 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
+import torchvision.models as models
 
 from PIL import Image
-import matplotlib.pyplot as plt
+
 
 import torchvision
 import torchvision.transforms as transforms
@@ -32,14 +33,6 @@ def image_loader(image_name):
     image = loader(image).unsqueeze(0)
     return image.to(device, torch.float)
 unloader = transforms.ToPILImage()
-def imshow(tensor, title=None):
-    image = tensor.cpu().clone()  # we clone the tensor to not do changes on it
-    image = image.squeeze(0)      # remove the fake batch dimension
-    image = unloader(image)
-    plt.imshow(image)
-    if title is not None:
-        plt.title(title)
-    plt.pause(0.001) # 
 
 class ContentLoss(nn.Module):
 
@@ -77,8 +70,10 @@ class StyleLoss(nn.Module):
         G = gram_matrix(input)
         self.loss = F.mse_loss(G, self.target)
         return input
-cnn = models.vgg19(pretrained=True).features.to(device).eval()
 
+#cnn = models.vgg19(pretrained=True).features.to(device).eval()
+
+model_imported = torch.load('model/vgg19_last.pt',map_location=device)
 cnn_normalization_mean = torch.tensor([0.485, 0.456, 0.406]).to(device)
 cnn_normalization_std = torch.tensor([0.229, 0.224, 0.225]).to(device)
 
@@ -105,12 +100,12 @@ def get_input_optimizer(input_img):
     optimizer = optim.LBFGS([input_img])
     return optimizer
 
-def run_style_transfer(cnn, normalization_mean, normalization_std,
+def run_style_transfer(model_imported, normalization_mean, normalization_std,
                        content_img, style_img, input_img, num_steps=300,
                        style_weight=1000000, content_weight=1):
     """Run the style transfer."""
     print('Building the style transfer model..')
-    model, style_losses, content_losses = get_style_model_and_losses(cnn,
+    model, style_losses, content_losses = get_style_model_and_losses(model_imported,
         normalization_mean, normalization_std, style_img, content_img)
 
     # We want to optimize the input and not the model parameters so we
@@ -166,7 +161,7 @@ def run_style_transfer(cnn, normalization_mean, normalization_std,
 content_layers_default = ['conv_4']
 style_layers_default = ['conv_1', 'conv_2', 'conv_3', 'conv_4', 'conv_5']
 
-def get_style_model_and_losses(cnn, normalization_mean, normalization_std,
+def get_style_model_and_losses(model_imported, normalization_mean, normalization_std,
                                style_img, content_img,
                                content_layers=content_layers_default,
                                style_layers=style_layers_default):
@@ -183,7 +178,7 @@ def get_style_model_and_losses(cnn, normalization_mean, normalization_std,
     model = nn.Sequential(normalization)
 
     i = 0  # increment every time we see a conv
-    for layer in cnn.children():
+    for layer in model_imported.children():
         if isinstance(layer, nn.Conv2d):
             i += 1
             name = 'conv_{}'.format(i)

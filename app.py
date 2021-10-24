@@ -12,12 +12,11 @@ import base64
 from style import *
 
 # Create Flask app
-app = Flask(__name__)
+app = Flask(__name__, static_folder = "static")
 
 # Flask file configurations
 
 app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.png', '.gif','.jpeg']
-
 
 def validate_image(stream):
     header = stream.read(512)
@@ -42,7 +41,7 @@ def image_preprocessing(uploaded_file):
 
 # to keep names of uploaded files
 files = []
-
+print()
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -57,7 +56,7 @@ def upload_files():
         input_img, content_img, style_img = image_preprocessing(uploaded_file)
         assert style_img.size() == content_img.size(), \
             "we need to import style and content images of the same size"
-        output = run_style_transfer(cnn, cnn_normalization_mean, cnn_normalization_std,
+        output = run_style_transfer(model_imported, cnn_normalization_mean, cnn_normalization_std,
                                 content_img, style_img, input_img)
 
         # pytorch tensor image convert to PIL image and prepare for html input
@@ -69,11 +68,9 @@ def upload_files():
 
         return render_template('index.html',  files=files[0])
     except:
-        return render_template('error.html')
+      return render_template('error.html')
     
-
-
-
 # Run app
 if __name__ == "__main__":
     app.run(debug=True)
+    

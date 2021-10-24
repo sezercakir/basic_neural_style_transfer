@@ -17,6 +17,36 @@
     <!-- MDB -->
     
     <link rel="stylesheet" href="https://github.com/sezercakir/basic_neural_style_transfer/blob/master/mdb.min.css">
+    <style>
+ #container {
+            width:100%;
+           
+         
+        }
+
+        img {
+            display:inline-block;
+            width:170px;
+            height:170px;
+        }
+        .split {
+          margin-top: 500px;
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.left {
+  left: 0;
+}
+.right{
+  right: 0;
+}
+  </style>
   </head>
   <body>
     <!-- Start your project here-->
@@ -28,7 +58,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   
-  <title>Document</title>
+  <title>Document</title> 
 </head>
 <body>
   <!-- Navbar -->
@@ -67,8 +97,9 @@
 <!-- Container wrapper -->
 </nav>
 <!-- Navbar -->
-<div style="text-align: center;margin-bottom: 20px; font-size: x-small;">
-  <p>Allowed images formats are .jpeg and .jpg</p>
+<div style="text-align: center;margin-bottom: 10px; font-size: x-small;margin-top: 50px;">
+  <p>Allowed images formats are .jpeg and .jpg</p><br>
+  <p>Due to default timeout config 30 second of heroku style-transfer model request drops timeout</p>
 </div>
   
   <form method="POST" action="" enctype="multipart/form-data" class="text-center" style="margin: auto;width: 50%;border: none;">
@@ -77,17 +108,45 @@
     <label for="formFileLg" class="form-label" >Content Image</label>
     <input class="form-control form-control-lg" id="formFileLg" name="file2" type="file" />
     <input class="btn btn-primary" type="submit" value="Submit" style="margin-top: 20px;">
-
   </form>
-  <hr>
-  <div style="align-items: center;width: 150px;height: 150px;">
-    {% if files %}
-    <img  id="picture" src="data:image/jpeg;base64,{{ files }}">
-    {% endif %}
+
+<p style="text-align: center;margin-top: 20px;">Inputs and Outputs From The Trained Style-Transfer Model</p><br>
   </div>
+  <hr>
   
-  <br>
-  {{ shape }}
+  <div class="split left">
+    
+    <div style="margin-top: 20px;">
+        <div id="container">
+            <img src="https://github.com/sezercakir/basic_neural_style_transfer/blob/master/images/IMG_3514.jpg?raw=true"    style="margin-right:20px;">
+            <img src="https://github.com/sezercakir/basic_neural_style_transfer/blob/master/images/picasso.jpg?raw=true"      style="margin-right:60px;">
+            <img src="https://github.com/sezercakir/basic_neural_style_transfer/blob/master/images/ben.jpg?raw=true" >
+        </div>
+        <div id="container">
+          <img src="https://github.com/sezercakir/basic_neural_style_transfer/blob/master/images/image.jpg?raw=true"          style="margin-right:20px;">
+          <img src="https://github.com/sezercakir/basic_neural_style_transfer/blob/master/images/the_scream.jpg?raw=true"    style="margin-right:60px;">
+          <img src="https://github.com/sezercakir/basic_neural_style_transfer/blob/master/images/c%C4%B1g%CC%86l%C4%B1_ist.jpg?raw=true" >
+      </div>
+  </div>
+  <div class="split right">
+    <div style="margin-top: 20px;">
+        <div id="container">
+          <img src="https://github.com/sezercakir/basic_neural_style_transfer/blob/master/images/tas%CC%A7k%C4%B1s%CC%A7la.jpeg?raw=true"    style="margin-right:20px;">
+          <img src="https://github.com/sezercakir/basic_neural_style_transfer/blob/master/images/style6.jpg?raw=true"      style="margin-right:60px;">
+          <img src="https://github.com/sezercakir/basic_neural_style_transfer/blob/master/images/tas%CC%A7k%C4%B1s%CC%A7la+style.jpg?raw=true" >
+      </div>
+      <div id="container">
+        <img src="https://github.com/sezercakir/basic_neural_style_transfer/blob/master/images/caprio.jpg?raw=true"          style="margin-right:20px;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Great_Wave_off_Kanagawa2.jpg/1280px-Great_Wave_off_Kanagawa2.jpg"    style="margin-right:60px;">
+        <img src="https://github.com/sezercakir/basic_neural_style_transfer/blob/master/images/dicaprio.jpg?raw=true" >
+      </div>
+  </div>
+    </div>
+
+    
+
+<a style="font-size: x-small;" href="https://github.com/sezercakir/basic_neural_style_transfer">For Source Code</a>
+
 </body>
 </html>
     

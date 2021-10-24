@@ -4,9 +4,9 @@ This repo is a simple style transfer naive [project](https://style-transfer-with
 
 ## Description
 
-In field of style transfer input style image and content image are given to model as inputs. The images are sent ot model after image preprocesing where size and format of images are controlled.
+In field of style transfer input style image and content image are given to model as inputs. The images are sent to model after image preprocesing where size and format of images are controlled.
 Some tensor to PIL image and PIL image to tensor image conversions are applied on images and lastly output image data send to main html document via flask backend. 
-Unfortunately, I have noticed that heroku timeout config are set as 30 second and it couldnt change at the end of the story :/ 
+Unfortunately, I have noticed that heroku timeout config are set as 30 second and it couldnt be changed at the end of the story :/ 
 
 ## Model
 
